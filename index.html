@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Micha Wieser - Python Web Development Portfolio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="nav-container">
+        <nav>
+            <div class="nav-logo">Micha</div>
+            <button class="nav-toggle" aria-label="Menü umschalten">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-menu">
+                <a href="#about" class="nav-item">Über mich</a>
+                <a href="#skills" class="nav-item">Kenntnisse</a>
+                <a href="#projects" class="nav-item">Projekte</a>
+            </div>
+        </nav>
+    </div>
+
+    <section class="section hero">
+        <div class="terminal card-3d">
+            <h1 class="build-in" style="overflow: hidden; white-space: nowrap; animation: typing 2s steps(40)">
+                >_ Willkommen
+            </h1>
+            <!-- Code Snippet angepasst -->
+            <div class="code-snippet build-in delay-1" onclick="toggleCode(this)">
+                <pre>
+                    <span class="code-keyword">class</span> <span class="code-function">MichaWieser</span>:
+                    <span class="code-keyword">def</span> <span class="code-function">__init__</span>(<span class="code-keyword">self</span>):
+                    <span class="code-keyword">self</span>.alter = <span class="code-number">33</span> # Stand 2024
+                    <span class="code-keyword">self</span>.standort = <span class="code-string">"Siegburg (bei Köln)"</span>
+                    <span class="code-keyword">self</span>.interesse = <span class="code-string">"Backend-Entwicklung"</span>
+                    <span class="code-keyword">self</span>.lernt_gerade = [<span class="code-string">"Python"</span>, <span class="code-string">"Flask"</span>, <span class="code-string">"Git"</span>, <span class="code-string">"Docker"</span>]
+                </pre>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="about">
+        <!-- Headline passt weiterhin gut -->
+        <h2 class="section-title build-in">
+            <span class="color-primary">//</span> Vom Quereinsteiger zum Code-Enthusiast
+        </h2>
+
+        <div class="about-grid">
+            <!-- Left Column -->
+            <div class="card-3d about-card-left build-in">
+                <div class="deco-line"></div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <h3 class="color-primary" style="margin-bottom: 1rem;">🎯 Meine Reise</h3>
+                    <p class="timeline-text">
+                        Schon seit über 10 Jahren fasziniert mich die Welt der Webentwicklung, insbesondere das <span class="highlight-red">Backend</span>. Nach meiner Ausbildung zur Fachkraft für Lagerlogistik (2010-2013) habe ich vor zwei Jahren den Entschluss gefasst, diese Leidenschaft aktiv zu verfolgen.
+                        Mit 33 Jahren lerne ich nun gezielt <span class="dashed-underline">Python</span> und verwandte Technologien, um meine Ideen in funktionierenden Code umzusetzen. Ich komme aus Köln und wohne jetzt in Siegburg.
+                    </p>
+                </div>
+
+                <!-- Quote Box -->
+                <div class="quote-box">
+                    <div class="quote-header">
+                        <div class="quote-avatar"></div>
+                        <div>
+                            <p class="quote-author">Michael Wieser</p>
+                            <p class="quote-title">Angehender Backend-Entwickler</p>
+                        </div>
+                    </div>
+                    <p class="quote-text">
+                        "Der spannendste Code ist der, der ein Problem löst, das mich schon lange beschäftigt hat."
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right Column - Skills -->
+            <div class="build-in delay-1">
+                <div class="skill-cloud">
+                    <div class="skill-card">
+                        <h4><span class="color-primary">🚀</span> Aktueller Fokus</h4>
+                        <ul>
+                            <li><span class="color-primary list-marker">▹</span> Grundlagen Backend (Python/Flask)</li>
+                            <li><span class="color-primary list-marker">▹</span> Versionsverwaltung mit Git</li>
+                            <li><span class="color-primary list-marker">▹</span> Basics Docker & Container</li>
+                             <li><span class="color-primary list-marker">▹</span> HTML & CSS für Web-Frontends</li>
+                        </ul>
+                    </div>
+
+                    <!-- Tech-Stack -->
+                    <div class="skill-card">
+                        <h4><span class="color-primary">📌</span> Tech-Stack (Grundlagen)</h4>
+                        <div class="tech-tags">
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">Flask</span>
+                            <span class="tech-tag">Git</span>
+                            <span class="tech-tag">Docker</span>
+                            <span class="tech-tag">HTML</span>
+                            <span class="tech-tag">CSS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="section" id="skills">
+        <h2 class="section-title build-in">
+             <span class="color-primary">//</span> Meine Kenntnisse
+        </h2>
+         <p class="build-in delay-1 skill-intro">
+            Hier ein Überblick über die Technologien und Konzepte, in denen ich aktuell meine Grundlagen aufbaue und erste praktische Erfahrungen sammle.
+        </p>
+
+         <div class="skills-grid">
+
+             <!-- Skill Category: Programming Languages -->
+             <div class="card-3d skill-category build-in">
+                 <h4 class="skill-category-title"><span class="color-primary">λ</span> Programmierung & Web</h4>
+                 <ul class="skill-list">
+                     <li>Python <span class="skill-proficiency">Grundlagen</span></li>
+                     <li>HTML5 <span class="skill-proficiency">Basis</span></li>
+                     <li>CSS3 <span class="skill-proficiency">Basis</span></li>
+                 </ul>
+             </div>
+
+             <!-- Skill Category: Backend & Frameworks -->
+             <div class="card-3d skill-category build-in delay-1">
+                 <h4 class="skill-category-title"><span class="color-primary">⚙️</span> Backend</h4>
+                 <ul class="skill-list">
+                     <li>Flask <span class="skill-proficiency">Grundlagen</span></li>
+                 </ul>
+             </div>
+
+             <!-- Skill Category: Tools & Concepts -->
+             <div class="card-3d skill-category build-in delay-2">
+                 <h4 class="skill-category-title"><span class="color-primary">🛠️</span> Tools & Versionierung</h4>
+                  <ul class="skill-list">
+                     <li>Git / GitHub <span class="skill-proficiency">Grundlagen</span></li>
+                     <li>Docker <span class="skill-proficiency">Grundlagen</span></li>
+                     <li>Command Line (Bash) <span class="skill-proficiency">Basis</span></li>
+                 </ul>
+             </div>
+             <!-- Beispiel: Ausblick -->
+             <div class="card-3d skill-category build-in delay-3">
+                 <h4 class="skill-category-title"><span class="color-primary">💡</span> Nächste Lernziele</h4>
+                  <ul class="skill-list">
+                     <li>SQL & Datenbanken (z.B. PostgreSQL)</li>
+                     <li>Testing mit Pytest</li>
+                     <li>REST API Vertiefung</li>
+                 </ul>
+             </div>
+
+         </div>
+    </section>
+
+    <section class="section" id="projects">
+        <h2 class="section-title build-in">
+             <span class="color-primary">//</span> Projekte
+        </h2>
+         <!-- Intro  -->
+         <p class="build-in delay-1 project-intro">
+            Hier einige Beispiele meiner ersten Projekte und Übungen, in denen ich die gelernten Grundlagen angewendet habe.
+            <br><em>(Hinweis: Die folgenden Beispiele sind Platzhalter und sollten durch deine tatsächlichen Projekte ersetzt werden!)</em>
+        </p>
+         <div class="project-grid">
+            <!-- Project Card 1  -->
+            <div class="card-3d project-card build-in">
+                <img src="images/600x400.gif" alt="Projekt Simple Blog Vorschau" class="project-image">
+                <div class="project-content">
+                    <h4 class="project-title">Einfacher Blog mit Flask</h4>
+                    <p class="project-description">
+                        Eine simple Blog-Anwendung zum Erstellen und Anzeigen von Beiträgen. Fokus auf Flask-Routing, Templates (Jinja2) und grundlegende Formularverarbeitung.
+                    </p>
+                    <div class="project-tech-stack">
+                        <span class="project-tech-tag">Python</span>
+                        <span class="project-tech-tag">Flask</span>
+                        <span class="project-tech-tag">HTML</span>
+                        <span class="project-tech-tag">CSS</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card 2 - -->
+            <div class="card-3d project-card build-in delay-1">
+                 <img src="images/600x400.gif" alt="Projekt Dockerized App Vorschau" class="project-image">
+                 <div class="project-content">
+                    <h4 class="project-title">Docker Container für Flask App</h4>
+                    <p class="project-description">
+                        Erstellung eines Dockerfiles und Docker Compose Setups, um eine einfache Flask-Anwendung zu containerisieren und lokal auszuführen. Übung im Umgang mit Docker-Basics.
+                    </p>
+                    <div class="project-tech-stack">
+                        <span class="project-tech-tag">Docker</span>
+                        <span class="project-tech-tag">Docker Compose</span>
+                        <span class="project-tech-tag">Python</span>
+                        <span class="project-tech-tag">Flask</span>
+                    </div>
+                    <div class="project-links">
+                         <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project Card 3 -->
+            <div class="card-3d project-card build-in delay-2">
+                 <img src="images/600x400.gif" alt="Projekt Portfolio Website Vorschau" class="project-image">
+                 <div class="project-content">
+                    <h4 class="project-title">Dieses Portfolio</h4>
+                    <p class="project-description">
+                        Meine persönliche Portfolio-Seite, erstellt mit HTML, CSS und etwas JavaScript, um meine Lernreise und Projekte zu präsentieren. Fokus auf Struktur und Design.
+                    </p>
+                    <div class="project-tech-stack">
+                        <span class="project-tech-tag">HTML5</span>
+                        <span class="project-tech-tag">CSS3</span>
+                        <span class="project-tech-tag">JavaScript</span>
+                        <span class="project-tech-tag">Git</span>
+                    </div>
+                    <div class="project-links">
+                         <a href="#" class="project-link" target="_blank" rel="noopener noreferrer">GitHub</a>
+                         <a href="#top" class="project-link">Live Demo (Hier)</a>
+                    </div>
+                </div>
+            </div>
+         </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#">Impressum</a>
+                <span class="footer-separator">|</span>
+                <a href="#">Datenschutz</a>
+            </div>
+            <div class="social-icons">
+                <a href="#" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn Profil">
+                    <!-- Simple LinkedIn SVG Icon -->
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                </a>
+                 <a href="#" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profil">
+                    <!-- Simple GitHub SVG Icon -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

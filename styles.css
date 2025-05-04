@@ -1,0 +1,792 @@
+:root {
+    --primary-red: #ff6b6b;
+    --soft-red: #ff8787;
+    --light-accent: #fff5f5;
+    --dark-bg: #1a1a1a;
+    --text-color: #333;
+    --light-text: #666;
+    --nav-height: 70px; /* Define navigation height */
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
+}
+
+body {
+    background: white;
+    color: var(--text-color);
+    overflow-x: hidden;
+}
+
+/* Navigation */
+.nav-container {
+    position: fixed;
+    top: -100px; /* Start hidden */
+    width: 100%;
+    background: rgba(255, 255, 255, 0.97);
+    box-shadow: 0 5px 30px rgba(0,0,0,0.1);
+    transition: top 0.6s cubic-bezier(0.4, 0, 0.2, 1); /* Animate only top */
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+    height: var(--nav-height);
+}
+
+.nav-container.visible {
+    top: 0; /* Slide in */
+}
+
+nav {
+    height: 100%;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nav-logo {
+    color: var(--primary-red);
+    font-weight: 700;
+    font-size: 1.8rem;
+    opacity: 0;
+    transform: translateX(-50px);
+    transition: 0.5s all ease 0.2s; /* Delay slightly */
+}
+
+.nav-container.visible .nav-logo {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    color: #444;
+    text-decoration: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    transition: background 0.3s ease, color 0.3s ease, opacity 0.5s ease, transform 0.5s ease;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+/* Animate nav items when nav is visible */
+.nav-container.visible .nav-item {
+    opacity: 1;
+    transform: translateY(0);
+}
+/* Add staggered delay for nav items */
+.nav-container.visible .nav-item:nth-child(1) { transition-delay: 0.3s; }
+.nav-container.visible .nav-item:nth-child(2) { transition-delay: 0.4s; }
+.nav-container.visible .nav-item:nth-child(3) { transition-delay: 0.5s; }
+/* Add more if needed */
+
+
+.nav-item:hover {
+    background: var(--light-accent);
+    color: var(--primary-red);
+}
+
+/* Mobile Navigation Toggle Button */
+.nav-toggle {
+    display: none; /* Hidden by default */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    z-index: 1010; /* Above nav menu */
+}
+
+.nav-toggle span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--primary-red);
+    margin: 5px 0;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Sections */
+.section {
+    min-height: 100vh; /* Keep min-height for spacing */
+    padding: calc(var(--nav-height) + 4rem) 2rem 4rem; /* Adjust top padding */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+/* First section (hero) needs more top padding if nav is initially hidden */
+.hero {
+     padding-top: 15vh;
+}
+
+/* Section Title Styling */
+.section-title {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.color-primary {
+    color: var(--primary-red);
+}
+
+
+/* Hero Section */
+.hero {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    perspective: 1000px;
+}
+
+.terminal {
+    border: 3px solid var(--light-accent);
+    border-radius: 20px;
+    padding: 4rem;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(145deg, #ffffff, #fff5f5);
+    box-shadow: 0 20px 50px rgba(255,107,107,0.1);
+    /* Initial state set by JS */
+    transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-style: preserve-3d; /* Needed for children transforms */
+}
+
+.terminal::after {
+    content: "▋";
+    animation: blink 1s infinite;
+    color: var(--primary-red);
+    position: absolute;
+    right: 30px;
+    bottom: 30px;
+    font-weight: bold;
+}
+
+h1 {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+    color: var(--primary-red);
+    line-height: 1.2;
+    transform: translateZ(50px); /* Keep text slightly forward */
+}
+
+/* 3D Cards */
+.card-3d {
+    transform-style: preserve-3d;
+    transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+    /* Initial state set by JS for consistency */
+    position: relative; /* Ensure positioning context */
+}
+
+/* Code Snippets */
+.code-snippet {
+    background: var(--dark-bg);
+    border-radius: 15px;
+    padding: 2rem;
+    font-family: 'Courier New', monospace;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.6s ease, box-shadow 0.6s ease, scale 0.3s ease; /* Add scale transition */
+    transform: translateZ(0); /* Initial Z */
+    overflow: hidden;
+}
+
+.code-snippet:hover {
+    transform: translateZ(30px); /* Lift on hover */
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.code-snippet.expanded {
+    scale: 1.02; /* Simple visual feedback on click */
+}
+
+.code-keyword { color: #569cd6; }
+.code-function { color: #dcdcaa; }
+.code-string { color: #ce9178; }
+.code-comment { color: #6a9955; }
+
+/* About Section Styles */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start; /* Align items to the top */
+}
+
+.about-card-left {
+    background: var(--light-accent);
+    padding: 2rem;
+    border-radius: 15px;
+    /* position: relative; /* Already set by card-3d */
+}
+
+.deco-line {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--primary-red);
+    border-radius: 0 5px 5px 0; /* Slight rounding */
+}
+
+.timeline-item {
+    margin-bottom: 2rem;
+    position: relative;
+    padding-left: 2rem; /* Space for marker */
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -8px; /* Adjust position relative to padding */
+    top: 5px;
+    width: 16px;
+    height: 16px;
+    background: white;
+    border: 3px solid var(--primary-red);
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.timeline-text {
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.highlight-red {
+    color: var(--primary-red);
+    font-weight: 500;
+}
+
+.dashed-underline {
+     border-bottom: 2px dashed var(--soft-red);
+     padding-bottom: 2px;
+}
+
+.quote-box {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    margin: 2rem 0 0; /* Adjusted margin */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    position: relative;
+    overflow: hidden;
+}
+
+.quote-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.quote-avatar {
+    width: 40px;
+    height: 40px;
+    background: var(--primary-red);
+    border-radius: 50%;
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+.quote-author {
+    font-weight: 500;
+    margin: 0;
+}
+
+.quote-title {
+    color: var(--primary-red);
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.quote-text {
+    font-style: italic;
+    color: var(--light-text);
+    margin: 0;
+    position: relative; /* Needed for pseudo-element */
+    z-index: 1;
+}
+
+
+.quote-box::after {
+    content: "“";
+    position: absolute;
+    right: -10px; /* Adjusted position */
+    bottom: -30px; /* Adjusted position */
+    font-size: 8rem; /* Increased size */
+    line-height: 1;
+    color: var(--light-accent);
+    opacity: 0.8;
+    z-index: 0;
+}
+
+/* Right Column Skills */
+.skill-cloud {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.skill-card {
+    padding: 1.5rem;
+    background: white;
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-left: 5px solid var(--primary-red);
+}
+
+.skill-card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 20px rgba(255,107,107,0.1);
+}
+
+.skill-card h4 {
+    margin: 0 0 1rem 0;
+    /* color: var(--primary-red); /* Use span for icon color */
+}
+
+.skill-card h4 .color-primary { /* Style for icon */
+    margin-right: 0.5rem;
+}
+
+
+.skill-card ul {
+    display: grid;
+    gap: 0.8rem; /* Increased gap */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.skill-card li {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem; /* Increased gap */
+}
+.skill-card li .list-marker {
+    font-size: 1.2em; /* Make marker slightly bigger */
+    line-height: 1;
+}
+
+
+.tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem; /* Increased gap */
+}
+
+.tech-tag {
+    background: var(--light-accent);
+    color: var(--primary-red); /* Text color */
+    padding: 0.4rem 1rem; /* Adjusted padding */
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: inline-flex; /* Align text and pseudo-element */
+    align-items: center;
+}
+
+.tech-tag::after {
+    content: '▹'; /* Use a different character or keep empty if only visual */
+    margin-left: 0.5rem;
+    font-size: 0.8em;
+    opacity: 0.7;
+}
+
+
+/* Animations */
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink {
+    50% { opacity: 0 }
+}
+
+/* Build-in animation */
+.build-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1), transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.build-in.delay-1 { transition-delay: 0.15s; }
+.build-in.delay-2 { transition-delay: 0.3s; }
+/* Add more delays if needed */
+
+.build-in.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Skills Section Styles - Revised */
+.skill-intro {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 4rem auto;
+    line-height: 1.7;
+    color: var(--light-text);
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Slightly wider min width */
+    gap: 2.5rem; /* Increased gap */
+}
+
+/* Revised Skill Category Styling */
+.skill-category {
+    /* Inherits card-3d styles */
+    background: var(--light-accent); /* Use light accent background */
+    padding: 1.5rem 1.5rem 1.5rem 2rem; /* Adjusted padding, more on left */
+    border-radius: 15px; /* Match terminal/project card radius */
+    border-left: 5px solid var(--primary-red); /* Strong red accent border */
+    /* Remove previous border and shadow, rely on card-3d for depth */
+    position: relative; /* Ensure positioning context for 3D */
+    overflow: hidden; /* Ensure border radius applies correctly */
+    transition: background 0.3s ease; /* Smooth background transition if needed */
+}
+
+/* No hover needed here if card-3d handles interaction,
+   or add a subtle shadow on hover if desired */
+/* .skill-category:hover {
+    box-shadow: 0 10px 25px rgba(255,107,107,0.1);
+} */
+
+/* Revised Skill Category Title */
+.skill-category-title {
+    margin: 0 0 1.5rem 0; /* Space below title */
+    font-size: 1.3rem; /* Slightly larger title */
+    font-weight: 600; /* Bolder title */
+    color: var(--text-color);
+    /* Remove bottom border */
+    padding-bottom: 0; /* Remove padding for border */
+    display: flex;
+    align-items: center;
+    gap: 0.8rem; /* Space between icon and text */
+}
+
+.skill-category-title .color-primary {
+    font-size: 1.6em; /* Larger icon */
+    line-height: 1;
+    flex-shrink: 0; /* Prevent icon from shrinking */
+}
+
+.skill-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.9rem; /* Slightly increased gap */
+}
+
+.skill-list li {
+    color: var(--text-color);
+    font-size: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.1rem 0; /* Minimal padding */
+    line-height: 1.4; /* Improve readability */
+}
+
+/* Revised Skill Proficiency Styling */
+.skill-proficiency {
+    font-size: 0.9rem; /* Slightly larger */
+    font-weight: 500; /* Make it stand out a bit */
+    color: var(--primary-red); /* Use primary red for emphasis */
+    /* Remove background and padding for cleaner look */
+    background-color: transparent;
+    padding: 0;
+    margin-left: 0.8rem; /* More space */
+    white-space: nowrap;
+    text-align: right; /* Align right within its space */
+}
+
+/* Responsive adjustments for Skills */
+@media (max-width: 600px) {
+    .skills-grid {
+        grid-template-columns: 1fr; /* Stack on small screens */
+        gap: 2rem;
+    }
+    .skill-category {
+        padding: 1.2rem 1.2rem 1.2rem 1.5rem; /* Adjust padding */
+    }
+     .skill-category-title {
+        font-size: 1.2rem;
+        margin-bottom: 1.2rem;
+     }
+      .skill-list li {
+        font-size: 0.95rem;
+     }
+     .skill-proficiency {
+        font-size: 0.85rem;
+     }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-toggle {
+        display: block; /* Show hamburger */
+    }
+
+    /* Hamburger animation when nav is open */
+     .nav-container.nav-open .nav-toggle span:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .nav-container.nav-open .nav-toggle span:nth-child(2) {
+        opacity: 0;
+    }
+    .nav-container.nav-open .nav-toggle span:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+
+    .nav-menu {
+        position: absolute;
+        top: var(--nav-height); /* Position below navbar */
+        left: 0;
+        width: 100%;
+        background: white; /* Use solid background */
+        flex-direction: column;
+        align-items: center;
+        padding: 1rem 0;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+
+        /* Hide menu initially */
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        pointer-events: none;
+        transition: max-height 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    }
+
+    .nav-container.nav-open .nav-menu {
+        max-height: 500px; /* Allow space for items */
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .nav-item {
+        margin: 0.5rem 0;
+        opacity: 1; /* Always visible when menu is open */
+        transform: none; /* Reset transform */
+        width: 80%;
+        text-align: center;
+    }
+
+    h1 { font-size: 2.5rem; }
+    .terminal { padding: 2rem; }
+    .about-grid { grid-template-columns: 1fr; }
+
+     /* Adjust section padding for smaller screens */
+    .section {
+        padding: calc(var(--nav-height) + 2rem) 1rem 2rem;
+    }
+     .hero {
+        padding-top: 10vh; /* Adjust hero padding */
+    }
+    .section-title {
+        font-size: 2rem;
+        margin-bottom: 2rem;
+    }
+
+}
+
+/* Project Section Styles */
+.project-intro {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto 4rem auto;
+    line-height: 1.6;
+    color: var(--light-text);
+}
+
+.project-grid {
+    display: grid;
+    /* Create columns that are at least 300px wide,
+       but grow to fill available space */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2.5rem; /* Increased gap */
+}
+
+.project-card {
+    background: white;
+    border: 1px solid var(--light-accent);
+    border-radius: 15px; /* Match terminal radius */
+    overflow: hidden; /* Keep image corners rounded */
+    display: flex; /* Use flexbox for better control */
+    flex-direction: column; /* Stack image and content */
+    box-shadow: 0 10px 25px rgba(255,107,107,0.05); /* Subtle shadow */
+    /* Inherits card-3d transform styles */
+}
+
+.project-image {
+    display: block;
+    width: 100%;
+    height: 200px; /* Fixed height for consistency */
+    object-fit: cover; /* Scale and crop image nicely */
+    /* Removed border-bottom, use padding in content instead */
+}
+
+.project-content {
+    padding: 1.5rem;
+    flex-grow: 1; /* Allow content to fill remaining space */
+    display: flex;
+    flex-direction: column;
+}
+
+.project-title {
+    margin: 0 0 0.75rem 0;
+    color: var(--primary-red);
+    font-size: 1.3rem; /* Slightly larger title */
+}
+
+.project-description {
+    font-size: 0.95rem;
+    color: var(--light-text);
+    line-height: 1.6;
+    margin-bottom: 1.5rem; /* More space before tags */
+    flex-grow: 1; /* Push links to the bottom */
+}
+
+.project-tech-stack {
+    margin-bottom: 1.5rem; /* More space before links */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.project-tech-tag {
+    background: var(--light-accent);
+    color: var(--text-color);
+    padding: 0.3rem 0.8rem;
+    border-radius: 5px; 
+    font-size: 0.85rem;
+    font-weight: 500;
+    display: inline-block; /* Use inline-block for wrapping */
+    border: 1px solid transparent; /* Placeholder for potential hover */
+}
+
+.project-links {
+    margin-top: auto; /* Push links to the bottom if description is short */
+    padding-top: 1rem; /* Add space above links */
+    border-top: 1px solid var(--light-accent); /* Separator line */
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap; /* Allow links to wrap */
+}
+
+.project-link {
+    color: var(--primary-red);
+    text-decoration: none;
+    font-weight: 600; /* Bolder links */
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    border: 1px solid var(--soft-red);
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+.project-link:hover {
+    background: var(--primary-red);
+    color: white;
+    border-color: var(--primary-red);
+    transform: translateY(-2px); /* Slight lift on hover */
+    box-shadow: 0 4px 10px rgba(255,107,107, 0.3);
+}
+
+/* Ensure project cards respect grid gap on smaller screens */
+@media (max-width: 768px) {
+    .project-grid {
+        gap: 1.5rem; /* Reduce gap slightly */
+    }
+     .project-title {
+        font-size: 1.2rem;
+    }
+}
+
+/* --- Footer Styles --- */
+.footer {
+    background-color: #f8f9fa; /* Light grey background */
+    border-top: 1px solid #e9ecef; /* Subtle top border */
+    padding: 2rem 1rem; /* Vertical and horizontal padding */
+    margin-top: 5rem; /* Space above the footer */
+    color: var(--light-text); /* Use light text color */
+    font-size: 0.9rem;
+}
+
+.footer-content {
+    max-width: 1200px; /* Match section max-width */
+    margin: 0 auto; /* Center content */
+    display: flex;
+    justify-content: space-between; /* Links left, icons right */
+    align-items: center;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    gap: 1rem; /* Gap between items when they wrap */
+}
+
+.footer-links a {
+    color: var(--light-text); /* Use light text color for links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary-red); /* Highlight on hover */
+    text-decoration: underline;
+}
+
+.footer-separator {
+    margin: 0 0.5rem; /* Space around the separator */
+}
+
+.social-icons {
+    display: flex;
+    gap: 1.2rem; /* Space between icons */
+}
+
+.social-icons a {
+    color: var(--light-text); /* Initial icon color */
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-block; /* Allows transform */
+}
+
+.social-icons a:hover {
+    color: var(--primary-red); /* Highlight color on hover */
+    transform: scale(1.15); /* Slightly enlarge icon on hover */
+}
+
+.social-icons svg {
+    display: block; /* Remove extra space below SVG */
+    width: 24px; /* Consistent icon size */
+    height: 24px;
+}
+
+/* Footer responsiveness */
+@media (max-width: 768px) {
+    .footer-content {
+        flex-direction: column; /* Stack items vertically */
+        gap: 1.5rem; /* Increase gap when stacked */
+        text-align: center; /* Center text */
+    }
+
+    .footer-links {
+        order: 2; /* Place links below icons on small screens */
+    }
+
+    .social-icons {
+        order: 1; /* Place icons above links */
+    }
+}
